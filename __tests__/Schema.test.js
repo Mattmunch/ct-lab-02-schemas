@@ -26,5 +26,25 @@ describe('Schema', () => {
       weight: '30 lbs'
     });
   });
-    
+
+  it('throws on an invalid schema', () => {
+    const schema = new Schema({
+      name: {
+        type: String,
+        required: true
+      },
+      age: {
+        type: Number,
+      },
+      weight: {
+        type: String
+      }
+    });
+    const dog = {
+      age: 'potato',
+      weight: '9000 lbs'
+    };
+      
+    expect(() => schema.validate(dog)).toThrowErrorMatchingSnapshot();
+  });
 });
