@@ -37,6 +37,23 @@ describe('Validator', () => {
       expect(() => validator.validate(dog)).toThrowErrorMatchingSnapshot();
     });
       
+    describe('optional fields', () => {
+      beforeAll(() => {
+        validator = new Validator('age', {
+          type: Number
+        });
+      });
+        
+      it('returns the field', () => {
+        const dog = {
+          name: 'buckwheat',
+          age: 5,
+          weight: '30 lbs'
+        };
+          
+        expect(validator.validate(dog)).toEqual(5);
+      });
+    });
   });
 })
 ;
