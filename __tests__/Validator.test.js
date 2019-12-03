@@ -63,6 +63,15 @@ describe('Validator', () => {
         expect(validator.validate(dog)).toEqual(5);
       });
         
+      it('returns the field', () => {
+        const dog = {
+          name: 'buckwheat',
+          weight: '30 lbs'
+        };
+          
+        expect(validator.validate(dog)).toBeNull();
+      });
+        
     });
   });
 })
